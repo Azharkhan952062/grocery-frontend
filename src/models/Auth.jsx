@@ -18,6 +18,8 @@ const Auth1 = () => {
                 name,
                 email,
                 password,
+            }, {
+                withCredentials: true
             });
             console.log("data", data);
             if(data.success){

@@ -19,7 +19,9 @@ const Sellerlogin = () => {
             const { data } = await axios.post("/api/seller/login", {
                 email,
                 password,
-            } 
+            }, {
+                withCredentials: true
+            }
         );
 
             if (data.message) {
