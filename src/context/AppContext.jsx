@@ -22,7 +22,9 @@ const AppContextProvider = ({ children }) => {
 
   const fetchSeller = async () => {
     try {
-      const { data } = await axios.get("/api/seller/is-auth");
+      const { data } = await axios.get("/api/seller/is-auth", {
+        withCredentials: true
+      });
       setIsSeller(data.success);
     } catch (error) {
       // 401 = normal case (user login hai, seller nahi)
@@ -36,7 +38,9 @@ const AppContextProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("/api/product/list");
+      const { data } = await axios.get("/api/product/list", {
+        withCredentials: true
+      });
       if (data.success) {
         setProducts(data.products);
       } else {
@@ -102,7 +106,9 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     const updateCart = async () => {
       try {
-        const { data } = await axios.post("/api/cart/update", { cartItems });
+        const { data } = await axios.post("/api/cart/update", { cartItems }, {
+          withCredentials: true
+        });
         if (!data.success) {
           toast.error(data.message);
         }
